@@ -1,0 +1,53 @@
+<html>
+<body>
+    <div>
+      <h2>Update a Company</h2>
+      <form #checkCompanyIdForm = "ngForm" (ngSubmit) = "checkExists(checkCompanyIdForm)">
+        <div class="form-group">
+          <label for="companyId">Company ID</label>
+          <input type="text" class="form-control" name="companyId" placeholder="Enter Company ID" ngModel>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <div *ngIf="companyExists">
+        <h2>Enter New Details</h2>
+        <form #updateCompanyForm = "ngForm" (ngSubmit) = "updateCompany(updateCompanyForm)">
+          <div class="form-group">
+            <label for="companyName">Company Name</label>
+            <input type="text" class="form-control" name="companyName" placeholder="Enter Company Name" ngModel>
+          </div>
+          <div class="form-group">
+              <label for="turnover">Turnover</label>
+              <input type="text" class="form-control" name="turnover" placeholder="Enter Turnover" ngModel>
+          </div>
+          <div class="form-group">
+              <label for="ceo">CEO</label>
+              <input type="text" class="form-control" name="ceo" placeholder="Enter CEO" ngModel>
+          </div> 
+          <div class="form-group">
+              <label for="boardOfDirectors">Board Of Directors</label>
+              <input type="text" class="form-control" name="boardOfDirectors" placeholder="Enter Board Of Directors" ngModel>
+          </div>
+          <div class="form-group">
+              <label for="listedInStockExchanges">Listed In StockExchanges</label>
+              <input type="text" class="form-control" name="listedInStockExchanges" placeholder="Listed In StockExchanges?" ngModel>
+          </div>
+          <div class="form-group">
+              <label for="sectorId">Sector ID</label>
+              <input type="text" class="form-control" name="sectorId" placeholder="Enter Sector ID" ngModel>
+          </div>
+          <div class="form-group">
+              <label for="brief">Brief</label>
+              <input type="text" class="form-control" name="brief" placeholder="Write a brief about the company" ngModel>
+          </div>
+          <div class="form-group">
+              <label for="stockExchangeIds">Stock Exchange IDs</label>
+              <input type="text" class="form-control" name="stockExchangeIds" placeholder="Enter Stock Exchange IDs" ngModel>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+</body>    
+</html>

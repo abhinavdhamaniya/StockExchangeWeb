@@ -27,7 +27,7 @@ export class CreateCompanyComponent {
     });
  }
 
-  buildObject(createCompany: NgForm): CompanyDto {
+  private buildObject(createCompany: NgForm): CompanyDto {
     var company: CompanyDto = new CompanyDto();
     var companyDetails = createCompany.value;
     company.companyName = companyDetails.companyName;
