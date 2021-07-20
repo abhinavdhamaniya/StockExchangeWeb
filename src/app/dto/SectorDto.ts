@@ -1,8 +1,13 @@
-export interface SectorDto {
+export class SectorDto {
 
-    id: number;
+    public id: number = 0;
 
-    sectorName: String;
+    public sectorName: String = "";
 
-    brief: String;
+    public brief: String = "";
+
+    constructor(id: number)
+    {
+        this.id = id;
+    }
 }

@@ -1,0 +1,14 @@
+<html>
+<body>
+    <div>
+      <h2>Deactivate a Company</h2>
+      <form #deactivateCompany = "ngForm" (ngSubmit) = "onClickSubmit(deactivateCompany)">
+        <div class="form-group">
+          <label for="companyId">Company ID</label>
+          <input type="text" class="form-control" name="companyId" placeholder="Enter Company ID" ngModel>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+</body>    
+</html>

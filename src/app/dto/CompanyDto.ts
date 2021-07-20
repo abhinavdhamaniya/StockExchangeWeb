@@ -1,24 +1,24 @@
 import { SectorDto } from "./SectorDto";
 
-export interface CompanyDto {
+export class CompanyDto {
 
-    id: number;
+    public id: number = 0;
 
-    companyName: String;
+    public companyName: String = "";
 
-    turnover: number;
+    public turnover: number = 0;
 
-    ceo: String;
+    public ceo: String = "";
 
-    boardOfDirectors: String;
+    public boardOfDirectors: String = "";
 
-    listedInStockExchanges: Boolean;
+    public listedInStockExchanges: Boolean = false;
 
-    sector: SectorDto;
+    public sector: SectorDto = new SectorDto(0);
 
-    brief: String;
+    public brief: String = "";
 
-    deactivated: Boolean;
+    public deactivated: Boolean = false;
 
-    stockExchangeIds: Array<number>;
+    public stockExchangeIds: Array<number> = [];
 }

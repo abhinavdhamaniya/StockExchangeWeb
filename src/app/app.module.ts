@@ -11,6 +11,8 @@ import { UpdateIpoComponent } from './update-ipo/update-ipo.component';
 import { GetAllCompaniesComponent } from './company/get-all-companies/get-all-companies.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateCompanyComponent } from './company/create-company/create-company.component';
+import { FormsModule } from '@angular/forms';
+import { DeactivateCompanyComponent } from './company/deactivate-company/deactivate-company.component';
 
 @NgModule({
   declarations: [
@@ -20,17 +22,20 @@ import { CreateCompanyComponent } from './company/create-company/create-company.
     ManageExchangeComponent,
     UpdateIpoComponent,
     GetAllCompaniesComponent,
-    CreateCompanyComponent
+    CreateCompanyComponent,
+    DeactivateCompanyComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: 'admin/welcome', component: WelcomeComponent },
       { path: 'admin/import-data', component: ImportDataComponent },
       { path: 'admin/get-all-companies', component: GetAllCompaniesComponent },
       { path: 'admin/create-company', component: CreateCompanyComponent },
+      { path: 'admin/deactivate-company', component: DeactivateCompanyComponent },
       { path: 'admin/manage-exchange', component: ManageExchangeComponent },
       { path: 'admin/update-ipo', component: UpdateIpoComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },

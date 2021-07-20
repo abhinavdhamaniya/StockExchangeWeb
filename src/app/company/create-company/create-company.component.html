@@ -2,42 +2,38 @@
 <body>
     <div>
       <h2>Create a new Company</h2>
-      <form>
+      <form #createCompany = "ngForm" (ngSubmit) = "onClickSubmit(createCompany)">
         <div class="form-group">
           <label for="companyName">Company Name</label>
-          <input type="text" class="form-control" id="companyName" placeholder="Enter Company Name">
+          <input type="text" class="form-control" name="companyName" placeholder="Enter Company Name" ngModel>
         </div>
         <div class="form-group">
             <label for="turnover">Turnover</label>
-            <input type="text" class="form-control" id="turnover" placeholder="Enter Turnover">
+            <input type="text" class="form-control" name="turnover" placeholder="Enter Turnover" ngModel>
         </div>
         <div class="form-group">
             <label for="ceo">CEO</label>
-            <input type="text" class="form-control" id="ceo" placeholder="Enter CEO">
+            <input type="text" class="form-control" name="ceo" placeholder="Enter CEO" ngModel>
         </div> 
         <div class="form-group">
             <label for="boardOfDirectors">Board Of Directors</label>
-            <input type="text" class="form-control" id="boardOfDirectors" placeholder="Enter Board Of Directors">
+            <input type="text" class="form-control" name="boardOfDirectors" placeholder="Enter Board Of Directors" ngModel>
         </div>
         <div class="form-group">
             <label for="listedInStockExchanges">Listed In StockExchanges</label>
-            <input type="text" class="form-control" id="listedInStockExchanges" placeholder="Listed In StockExchanges?">
+            <input type="text" class="form-control" name="listedInStockExchanges" placeholder="Listed In StockExchanges?" ngModel>
         </div>
         <div class="form-group">
             <label for="sectorId">Sector ID</label>
-            <input type="text" class="form-control" id="sectorId" placeholder="Enter Sector ID">
+            <input type="text" class="form-control" name="sectorId" placeholder="Enter Sector ID" ngModel>
         </div>
         <div class="form-group">
             <label for="brief">Brief</label>
-            <input type="text" class="form-control" id="brief" placeholder="Write a brief about the company">
-        </div>
-        <div class="form-group">
-            <label for="brief">Brief</label>
-            <input type="text" class="form-control" id="brief" placeholder="Write a brief about the company">
+            <input type="text" class="form-control" name="brief" placeholder="Write a brief about the company" ngModel>
         </div>
         <div class="form-group">
             <label for="stockExchangeIds">Stock Exchange IDs</label>
-            <input type="text" class="form-control" id="stockExchangeIds" placeholder="Enter Stock Exchange IDs">
+            <input type="text" class="form-control" name="stockExchangeIds" placeholder="Enter Stock Exchange IDs" ngModel>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
