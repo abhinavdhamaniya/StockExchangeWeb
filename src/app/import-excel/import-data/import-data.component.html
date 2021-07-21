@@ -1,0 +1,14 @@
+<html>
+<body>
+    <div>
+      <h2>Import Data</h2>
+      <form #importDataForm = "ngForm" (ngSubmit) = "onClickSubmit(importDataForm)">
+        <div class="form-group">
+          <label for="excelFile">Excel File</label>
+          <input type="file" class="form-control" name="excelFile" ngModel>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+</body>    
+</html>

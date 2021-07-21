@@ -16,6 +16,7 @@ import { CreateExchangeComponent } from './manage-exchange/create-exchange/creat
 import { GetAllIposComponent } from './manage-ipo/get-all-ipos/get-all-ipos.component';
 import { CreateIpoComponent } from './manage-ipo/create-ipo/create-ipo.component';
 import { UpdateIpoComponent } from './manage-ipo/update-ipo/update-ipo.component';
+import { ImportDataComponent } from './import-excel/import-data/import-data.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UpdateIpoComponent } from './manage-ipo/update-ipo/update-ipo.component
     CreateExchangeComponent,
     GetAllIposComponent,
     CreateIpoComponent,
-    UpdateIpoComponent
+    UpdateIpoComponent,
+    ImportDataComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,7 @@ import { UpdateIpoComponent } from './manage-ipo/update-ipo/update-ipo.component
       { path: 'admin/get-all-ipos', component: GetAllIposComponent },
       { path: 'admin/create-ipo', component: CreateIpoComponent },
       { path: 'admin/update-ipo', component: UpdateIpoComponent },
+      { path: 'admin/import-data', component: ImportDataComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
     ]),
