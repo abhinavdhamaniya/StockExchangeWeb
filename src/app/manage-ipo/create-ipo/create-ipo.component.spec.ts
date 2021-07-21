@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ImportDataComponent } from './import-data.component';
+import { CreateIpoComponent } from './create-ipo.component';
 
-describe('ImportDataComponent', () => {
-  let component: ImportDataComponent;
-  let fixture: ComponentFixture<ImportDataComponent>;
+describe('CreateIpoComponent', () => {
+  let component: CreateIpoComponent;
+  let fixture: ComponentFixture<CreateIpoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ImportDataComponent ]
+      declarations: [ CreateIpoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ImportDataComponent);
+    fixture = TestBed.createComponent(CreateIpoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,28 @@
+<html>
+<body>
+    <div class="row justify-content-center mt-4">
+        <table class="table table-responsive table-striped w-auto">
+            <thead>
+                <tr>
+                    <th scope="col">Stock Exchange ID</th>
+                    <th scope="col">Stock Exchange Name</th>
+                    <th scope="col">Brief</th>
+                    <th scope="col">Contact Address</th>
+                    <th scope="col">Remarks</th>
+                    <th scope="col">Company Ids</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let stockExchange of stockExchanges">
+                    <th scope="row">{{stockExchange.id}}</th>
+                    <td>{{stockExchange.stockExchangeName}}</td>
+                    <td>{{stockExchange.brief}}</td>
+                    <td>{{stockExchange.contactAddress}}</td>
+                    <td>{{stockExchange.remarks}}</td>
+                    <td>{{stockExchange.companyIds}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>    
+</html>

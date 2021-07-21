@@ -3,8 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { CompanyDto } from 'src/app/dto/CompanyDto';
 import { SectorDto } from 'src/app/dto/SectorDto';
-import { CreateCompanyComponent } from '../create-company/create-company.component';
-import { CreateCompanyService } from '../create-company/create-company.service';
 import { UpdateCompanyService } from './update-company.service';
 
 @Component({
@@ -18,7 +16,6 @@ export class UpdateCompanyComponent {
   errorMessage: String= "";
   _companyId: String = "";
   public companyExists: Boolean = false;
-  public company: CompanyDto = new CompanyDto();
 
   constructor(private updateCompanyService: UpdateCompanyService) {}
 
@@ -28,7 +25,6 @@ export class UpdateCompanyComponent {
       next: response => {
         this.companyExists = response;
         this._companyId = companyId;
-        this.patchValues(companyId)
       },
       error: err => {
         this.companyExists = false;
@@ -44,18 +40,6 @@ export class UpdateCompanyComponent {
         console.log(response);
       },
       error: err => this.errorMessage = err
-    });
-  }
-
-  patchValues(companyId: String){
-    this.sub = this.updateCompanyService.getCompanyDetails(companyId).subscribe({
-      next: response => {
-        this.company = response;
-        console.log(this.company);
-      },
-      error: err => {
-        this.errorMessage = err
-      }
     });
   }
 

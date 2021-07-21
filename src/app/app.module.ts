@@ -4,28 +4,32 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ImportDataComponent } from './import-data/import-data.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { ManageExchangeComponent } from './manage-exchange/manage-exchange.component';
-import { UpdateIpoComponent } from './update-ipo/update-ipo.component';
-import { GetAllCompaniesComponent } from './company/get-all-companies/get-all-companies.component';
+import { GetAllCompaniesComponent } from './manage-company/get-all-companies/get-all-companies.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CreateCompanyComponent } from './company/create-company/create-company.component';
+import { CreateCompanyComponent } from './manage-company/create-company/create-company.component';
 import { FormsModule } from '@angular/forms';
-import { DeactivateCompanyComponent } from './company/deactivate-company/deactivate-company.component';
-import { UpdateCompanyComponent } from './company/update-company/update-company.component';
+import { DeactivateCompanyComponent } from './manage-company/deactivate-company/deactivate-company.component';
+import { UpdateCompanyComponent } from './manage-company/update-company/update-company.component';
+import { GetAllExchangesComponent } from './manage-exchange/get-all-exchanges/get-all-exchanges.component';
+import { CreateExchangeComponent } from './manage-exchange/create-exchange/create-exchange.component';
+import { GetAllIposComponent } from './manage-ipo/get-all-ipos/get-all-ipos.component';
+import { CreateIpoComponent } from './manage-ipo/create-ipo/create-ipo.component';
+import { UpdateIpoComponent } from './manage-ipo/update-ipo/update-ipo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WelcomeComponent,
-    ImportDataComponent,
-    ManageExchangeComponent,
-    UpdateIpoComponent,
     GetAllCompaniesComponent,
     CreateCompanyComponent,
     DeactivateCompanyComponent,
-    UpdateCompanyComponent
+    UpdateCompanyComponent,
+    GetAllExchangesComponent,
+    CreateExchangeComponent,
+    GetAllIposComponent,
+    CreateIpoComponent,
+    UpdateIpoComponent
   ],
   imports: [
     BrowserModule,
@@ -34,12 +38,14 @@ import { UpdateCompanyComponent } from './company/update-company/update-company.
     FormsModule,
     RouterModule.forRoot([
       { path: 'admin/welcome', component: WelcomeComponent },
-      { path: 'admin/import-data', component: ImportDataComponent },
       { path: 'admin/get-all-companies', component: GetAllCompaniesComponent },
       { path: 'admin/create-company', component: CreateCompanyComponent },
       { path: 'admin/deactivate-company', component: DeactivateCompanyComponent },
       { path: 'admin/update-company', component: UpdateCompanyComponent },
-      { path: 'admin/manage-exchange', component: ManageExchangeComponent },
+      { path: 'admin/get-all-exchanges', component: GetAllExchangesComponent },
+      { path: 'admin/create-exchange', component: CreateExchangeComponent },
+      { path: 'admin/get-all-ipos', component: GetAllIposComponent },
+      { path: 'admin/create-ipo', component: CreateIpoComponent },
       { path: 'admin/update-ipo', component: UpdateIpoComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' }

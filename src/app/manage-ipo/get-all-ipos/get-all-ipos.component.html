@@ -1,0 +1,30 @@
+<html>
+<body>
+    <div class="row justify-content-center mt-4">
+        <table class="table table-responsive table-striped w-auto">
+            <thead>
+                <tr>
+                    <th scope="col">IPO ID</th>
+                    <th scope="col">Company</th>
+                    <th scope="col">Stock Exchange Name</th>
+                    <th scope="col">Price Per Share</th>
+                    <th scope="col">Total Shares</th>
+                    <th scope="col">Opening Date and Time</th>
+                    <th scope="col">Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let ipo of ipos">
+                    <th scope="row">{{ipo.id}}</th>
+                    <td>{{ipo.company | json}}</td>
+                    <td>{{ipo.stockExchangeName}}</td>
+                    <td>{{ipo.pricePerShare}}</td>
+                    <td>{{ipo.totalShares}}</td>
+                    <td>{{ipo.openDateTime}}</td>
+                    <td>{{ipo.remarks}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>    
+</html>

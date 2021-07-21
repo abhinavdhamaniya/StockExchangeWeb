@@ -1,0 +1,36 @@
+<html>
+<body>
+    <div class="row justify-content-center mt-4">
+        <table class="table table-responsive table-striped w-auto">
+            <thead>
+                <tr>
+                    <th scope="col">Company ID</th>
+                    <th scope="col">Company Name</th>
+                    <th scope="col">Turnover</th>
+                    <th scope="col">CEO</th>
+                    <th scope="col">Board Of Directors</th>
+                    <th scope="col">Listed In StockExchanges</th>
+                    <th scope="col">Sector</th>
+                    <th scope="col">Brief</th>
+                    <th scope="col">Deactivated</th>
+                    <th scope="col">Stock Exchange Ids</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let company of companies">
+                    <th scope="row">{{company.id}}</th>
+                    <td>{{company.companyName}}</td>
+                    <td>{{company.turnover}}</td>
+                    <td>{{company.ceo}}</td>
+                    <td>{{company.boardOfDirectors}}</td>
+                    <td>{{company.listedInStockExchanges}}</td>
+                    <td>{{company.sector | json}}</td>
+                    <td>{{company.brief}}</td>
+                    <td>{{company.deactivated}}</td>
+                    <td>{{company.stockExchangeIds}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>    
+</html>

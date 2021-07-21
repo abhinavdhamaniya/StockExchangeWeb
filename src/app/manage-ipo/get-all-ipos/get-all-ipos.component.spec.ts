@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManageExchangeComponent } from './manage-exchange.component';
+import { GetAllIposComponent } from './get-all-ipos.component';
 
-describe('ManageExchangeComponent', () => {
-  let component: ManageExchangeComponent;
-  let fixture: ComponentFixture<ManageExchangeComponent>;
+describe('GetAllIposComponent', () => {
+  let component: GetAllIposComponent;
+  let fixture: ComponentFixture<GetAllIposComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ManageExchangeComponent ]
+      declarations: [ GetAllIposComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManageExchangeComponent);
+    fixture = TestBed.createComponent(GetAllIposComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
