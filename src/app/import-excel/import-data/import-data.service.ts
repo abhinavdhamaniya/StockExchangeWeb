@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
@@ -14,7 +14,7 @@ export class ImportDataService {
     importData(file: File): Observable<any>{
         let formData: FormData = new FormData();
         formData.append('excelFile', file);
-        console.log(JSON.stringify(formData));
+        console.log(formData.getAll('excelFile')[0]);
         return this.http.post<FormData>(this.url, formData);
     }
     

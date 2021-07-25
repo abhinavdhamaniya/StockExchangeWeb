@@ -17,6 +17,10 @@ import { GetAllIposComponent } from './manage-ipo/get-all-ipos/get-all-ipos.comp
 import { CreateIpoComponent } from './manage-ipo/create-ipo/create-ipo.component';
 import { UpdateIpoComponent } from './manage-ipo/update-ipo/update-ipo.component';
 import { ImportDataComponent } from './import-excel/import-data/import-data.component';
+import { UpdateUserProfileComponent } from './update-user-profile/update-user-profile.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { UserLoginComponent } from './user-login/user-login.component';
+import { UserSignupComponent } from './user-signup/user-signup.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { ImportDataComponent } from './import-excel/import-data/import-data.comp
     GetAllIposComponent,
     CreateIpoComponent,
     UpdateIpoComponent,
-    ImportDataComponent
+    ImportDataComponent,
+    UpdateUserProfileComponent,
+    AdminLoginComponent,
+    UserLoginComponent,
+    UserSignupComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +47,7 @@ import { ImportDataComponent } from './import-excel/import-data/import-data.comp
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: 'admin/welcome', component: WelcomeComponent },
+      { path: 'welcome', component: WelcomeComponent },
       { path: 'admin/get-all-companies', component: GetAllCompaniesComponent },
       { path: 'admin/create-company', component: CreateCompanyComponent },
       { path: 'admin/deactivate-company', component: DeactivateCompanyComponent },
@@ -50,8 +58,11 @@ import { ImportDataComponent } from './import-excel/import-data/import-data.comp
       { path: 'admin/create-ipo', component: CreateIpoComponent },
       { path: 'admin/update-ipo', component: UpdateIpoComponent },
       { path: 'admin/import-data', component: ImportDataComponent },
+      { path: 'user/update-user-profile', component: UpdateUserProfileComponent },
+      { path: 'admin-login', component: AdminLoginComponent },
+      { path: 'user-login', component: UserLoginComponent },
+      { path: 'user-signup', component: UserSignupComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-      { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
     ]),
   ],
   providers: [],

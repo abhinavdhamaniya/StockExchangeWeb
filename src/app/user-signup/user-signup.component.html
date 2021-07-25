@@ -1,0 +1,26 @@
+<html>
+<body>
+    <div>
+      <h2>Signup for a user account!</h2>
+      <form #createUserForm = "ngForm" (ngSubmit) = "onClickSubmit(createUserForm)">
+        <div class="form-group">
+          <label for="username">User Name (Unique)</label>
+          <input type="text" class="form-control" name="username" placeholder="Enter a unique user name" ngModel>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="text" class="form-control" name="password" placeholder="Enter Password" ngModel>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" name="email" placeholder="Enter Email" ngModel>
+        </div> 
+        <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="text" class="form-control" name="phoneNumber" placeholder="Enter Phone Number" ngModel>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+</body>    
+</html>

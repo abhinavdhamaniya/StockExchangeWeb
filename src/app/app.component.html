@@ -1,47 +1,62 @@
 <html>
   <body>
     <h1 class='navbar-brand' id="pageTitle">{{pageTitle}}</h1>
-  
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <div class="container-fluid">
-       <a class="navbar-brand" href="#">{{subTitle}}</a>
-       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
-           <span class="navbar-toggler-icon"></span>
-       </button>
-       <div class="collapse navbar-collapse" id="main_nav">
-       <ul class="navbar-nav">
-          <li><a class='nav-link' routerLinkActive='active' routerLink='/admin/welcome'>Welcome</a></li>
-          <li><a class='nav-link' routerLinkActive='active' routerLink='/admin/import-data'>Import Data</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">Manage Company</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/get-all-companies'> Get All Companies </a></li>
-              <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/create-company'> Create A New Company </a></li>
-              <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/deactivate-company'> Deactivate A Company </a></li>
-              <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/update-company'> Update A Company </a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">Manage Stock Exchange</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/get-all-exchanges'> Get All Stock Exchanges </a></li>
-              <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/create-exchange'> Create A New Stock Exchange </a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">Manage IPO</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/get-all-ipos'> Get All IPOs </a></li>
-              <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/create-ipo'> Create A New IPO </a></li>
-              <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/update-ipo'> Update An IPO </a></li>
-            </ul>
-          </li>
-       </ul>
-       </div>
-      </div>
-     </nav>
-    <div class='container-fluid'>
-      <router-outlet></router-outlet>
-    </div>
+    <!--Admin Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="main_nav">
+
+  <!--Welcome Navbar-->
+  <ul class="navbar-nav" *ngIf='loggedInUser!="ADMIN" && loggedInUser!="NORMAL_USER"'>
+      <li><a class='nav-link' routerLinkActive='active' routerLink='/admin-login'>Admin Login</a></li>
+      <li><a class='nav-link' routerLinkActive='active' routerLink='/user-login'>User Login</a></li>
+      <li><a class='nav-link' routerLinkActive='active' routerLink='/user-signup'>User Signup</a></li>
+  </ul>
+
+  <!--Admin Navbar-->
+  <ul class="navbar-nav" *ngIf='loggedInUser=="ADMIN"'>
+      <li><a class='nav-link' routerLinkActive='active' routerLink='/admin/import-data'>Import Data</a></li>
+      <li class="nav-item dropdown">
+          <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">Manage Company</a>
+          <ul class="dropdown-menu">
+          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/get-all-companies'> Get All Companies </a></li>
+          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/create-company'> Create A New Company </a></li>
+          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/deactivate-company'> Deactivate A Company </a></li>
+          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/update-company'> Update A Company </a></li>
+          </ul>
+      </li>
+      <li class="nav-item dropdown">
+          <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">Manage Stock Exchange</a>
+          <ul class="dropdown-menu">
+          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/get-all-exchanges'> Get All Stock Exchanges </a></li>
+          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/create-exchange'> Create A New Stock Exchange </a></li>
+          </ul>
+      </li>
+      <li class="nav-item dropdown">
+          <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">Manage IPO</a>
+          <ul class="dropdown-menu">
+          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/get-all-ipos'> Get All IPOs </a></li>
+          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/create-ipo'> Create A New IPO </a></li>
+          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/update-ipo'> Update An IPO </a></li>
+          </ul>
+      </li>
+      <li><a class='nav-link' href="#" (click)='logout()'>Logout</a></li>
+  </ul>
+
+  <!--User Navbar-->
+  <ul class="navbar-nav" *ngIf='loggedInUser=="NORMAL_USER"'>
+    <li><a class='nav-link' routerLinkActive='active' routerLink='/user/update-user-profile'>Update User Profile</a></li>
+    <li><a class='nav-link' href="#" (click)='logout()'>Logout</a></li>
+  </ul>
+
+  </div>
+  </div>
+  </nav>
+  <div class='container-fluid'>
+    <router-outlet></router-outlet>
+  </div>
 </body>
 </html>
