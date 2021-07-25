@@ -1,0 +1,40 @@
+<html>
+<head>
+  <script>
+    // Data Picker Initialization
+    $('.datepicker').datepicker();
+  </script>
+</head>
+<body>
+    <div>
+      <h6>Comparison Chart - Single company over different periods of time</h6><br>
+      <form #comparisonChartForm = "ngForm" (ngSubmit) = "onClickSubmit(comparisonChartForm)">
+        <div class="form-group">
+          <label for="companyId">Company ID</label>
+          <input type="text" class="form-control" name="companyId" placeholder="Enter Company ID" ngModel>
+        </div>
+        <div class="form-group">
+          <label for="startDate">Start Date:</label>
+          <input type="date" class="form-control" name="startDate" ngModel>
+        </div>
+        <div class="form-group">
+          <label for="endDate">End Date:</label>
+          <input type="date" class="form-control" name="endDate" ngModel>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+    <div>
+      <canvas
+          baseChart
+          [chartType]="'bar'"
+          [datasets]="chartData"
+          [labels]="labels"
+          [options]="chartOptions"
+          [legend]="true"
+          [colors]="colors">
+      </canvas>
+    </div>
+</body>    
+</html>

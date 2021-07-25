@@ -21,6 +21,10 @@ import { UpdateUserProfileComponent } from './update-user-profile/update-user-pr
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { UserLoginComponent } from './user-login/user-login.component';
 import { UserSignupComponent } from './user-signup/user-signup.component';
+import { SingleCompanyComponent } from './comparison-charts/single-company/single-company.component';
+import { DifferentCompaniesComponent } from './comparison-charts/different-companies/different-companies.component';
+import { ChartsModule } from 'ng2-charts';
+import { GetCompanyByIdComponent } from './manage-company/get-company-by-id/get-company-by-id.component';
 
 @NgModule({
   declarations: [
@@ -39,13 +43,17 @@ import { UserSignupComponent } from './user-signup/user-signup.component';
     UpdateUserProfileComponent,
     AdminLoginComponent,
     UserLoginComponent,
-    UserSignupComponent
+    UserSignupComponent,
+    SingleCompanyComponent,
+    DifferentCompaniesComponent,
+    GetCompanyByIdComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ChartsModule,
     RouterModule.forRoot([
       { path: 'welcome', component: WelcomeComponent },
       { path: 'admin/get-all-companies', component: GetAllCompaniesComponent },
@@ -62,10 +70,14 @@ import { UserSignupComponent } from './user-signup/user-signup.component';
       { path: 'admin-login', component: AdminLoginComponent },
       { path: 'user-login', component: UserLoginComponent },
       { path: 'user-signup', component: UserSignupComponent },
+      { path: 'single-company', component: SingleCompanyComponent },
+      { path: 'different-companies', component: DifferentCompaniesComponent },
+      { path: 'get-company-by-id', component: GetCompanyByIdComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-    ]),
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

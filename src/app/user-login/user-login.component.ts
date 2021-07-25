@@ -29,6 +29,7 @@ export class UserLoginComponent {
           var user: UserDto = response;
           console.log(user);
           localStorage.setItem('LOGGED_IN_USER', "NORMAL_USER");
+          localStorage.setItem('LOGGED_IN_USER_ID', JSON.stringify(user.id));
           this.router.navigate(['user/update-user-profile'])
         }
       },

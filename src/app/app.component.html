@@ -1,6 +1,6 @@
 <html>
   <body>
-    <h1 class='navbar-brand' id="pageTitle">{{pageTitle}}</h1>
+    <h6 class='navbar-brand' id="pageTitle">{{pageTitle}}</h6>
     <!--Admin Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
@@ -22,25 +22,25 @@
       <li class="nav-item dropdown">
           <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">Manage Company</a>
           <ul class="dropdown-menu">
-          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/get-all-companies'> Get All Companies </a></li>
-          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/create-company'> Create A New Company </a></li>
-          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/deactivate-company'> Deactivate A Company </a></li>
-          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/update-company'> Update A Company </a></li>
+            <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/get-all-companies'> Get All Companies </a></li>
+            <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/create-company'> Create A New Company </a></li>
+            <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/deactivate-company'> Deactivate A Company </a></li>
+            <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/update-company'> Update A Company </a></li>
           </ul>
       </li>
       <li class="nav-item dropdown">
           <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">Manage Stock Exchange</a>
           <ul class="dropdown-menu">
-          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/get-all-exchanges'> Get All Stock Exchanges </a></li>
-          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/create-exchange'> Create A New Stock Exchange </a></li>
+            <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/get-all-exchanges'> Get All Stock Exchanges </a></li>
+            <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/create-exchange'> Create A New Stock Exchange </a></li>
           </ul>
       </li>
       <li class="nav-item dropdown">
           <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">Manage IPO</a>
           <ul class="dropdown-menu">
-          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/get-all-ipos'> Get All IPOs </a></li>
-          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/create-ipo'> Create A New IPO </a></li>
-          <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/update-ipo'> Update An IPO </a></li>
+            <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/get-all-ipos'> Get All IPOs </a></li>
+            <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/create-ipo'> Create A New IPO </a></li>
+            <li><a class="dropdown-item" routerLinkActive='active' routerLink='/admin/update-ipo'> Update An IPO </a></li>
           </ul>
       </li>
       <li><a class='nav-link' href="#" (click)='logout()'>Logout</a></li>
@@ -49,6 +49,24 @@
   <!--User Navbar-->
   <ul class="navbar-nav" *ngIf='loggedInUser=="NORMAL_USER"'>
     <li><a class='nav-link' routerLinkActive='active' routerLink='/user/update-user-profile'>Update User Profile</a></li>
+    <li class="nav-item dropdown">
+      <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">Comparison Charts</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" routerLinkActive='active' routerLink='single-company'> Single Company - Over Different Periods </a></li>
+        <li><a class="dropdown-item" routerLinkActive='active' routerLink='different-companies'> Between Different Companies  </a></li>
+        <li><a class="dropdown-item" routerLinkActive='active' routerLink=''> Single Sector - Over Different Periods </a></li>
+        <li><a class="dropdown-item" routerLinkActive='active' routerLink=''> Between Different Sectors  </a></li>
+        <li><a class="dropdown-item" routerLinkActive='active' routerLink=''> Between Sector and Company  </a></li>
+      </ul>
+    </li>
+    <li><a class='nav-link' routerLinkActive='active' routerLink='/admin/get-all-ipos'>View IPOs Planned</a></li>
+    <li class="nav-item dropdown">
+      <a class="nav-link  dropdown-toggle" data-bs-toggle="dropdown">Search Companies</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" routerLinkActive='active' routerLink='get-company-by-id'> Search By Id </a></li>
+        <li><a class="dropdown-item" routerLinkActive='active' routerLink=''> Search By Name </a></li>
+      </ul>
+    </li>
     <li><a class='nav-link' href="#" (click)='logout()'>Logout</a></li>
   </ul>
 

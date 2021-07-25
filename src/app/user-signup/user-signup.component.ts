@@ -17,8 +17,8 @@ export class UserSignupComponent {
   constructor(private createCompanyService: UserSignUpService) {}
 
   onClickSubmit(createUserForm: NgForm) {
-    var company = this.buildObject(createUserForm);
-    this.sub = this.createCompanyService.createUser(company).subscribe({
+    var user = this.buildObject(createUserForm);
+    this.sub = this.createCompanyService.createUser(user).subscribe({
       next: response => {
         console.log(response);
       },

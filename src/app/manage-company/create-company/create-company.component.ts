@@ -25,7 +25,7 @@ export class CreateCompanyComponent {
       },
       error: err => this.errorMessage = err
     });
- }
+  }
 
   private buildObject(createCompany: NgForm): CompanyDto {
     var company: CompanyDto = new CompanyDto();
