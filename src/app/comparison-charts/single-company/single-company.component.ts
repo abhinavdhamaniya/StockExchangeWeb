@@ -23,6 +23,9 @@ export class SingleCompanyComponent {
   labels: string[] =  [];
   labelsWithFullFormat: string[] =  [];
   data: number[] =  [];
+  avgData: number =0;
+  minData: number =0;
+  maxData: number =0;
 
   chartData = [
     {
@@ -92,9 +95,42 @@ export class SingleCompanyComponent {
           this.data.push(datePriceMap.get(dateVal));
         }
         this.chartData[0].data= this.data;
+        this.avgData = this.findAvgData(this.data);
+        this.minData = this.findMinData(this.data);
+        this.maxData = this.findMaxData(this.data);
       },
       error: err => this.errorMessage = err
     });
   }
 
+  findAvgData(data: number[])
+  {
+    var sum: number = 0;
+    var count: number = 0;
+    for(var i=0; i<data.length; i++) {
+      if(data[i]!=undefined) {
+        sum+= data[i];
+        count++;
+      }
+    } 
+    return sum/count;
+  }
+
+  findMaxData(data: number[])
+  {
+    var max: number = -1;
+    for(var i=0; i<data.length; i++) {
+      if(data[i]!=undefined && data[i]>max) max = data[i];
+    } 
+    return max;
+  }
+
+  findMinData(data: number[])
+  {
+    var min: number = Number.MAX_SAFE_INTEGER;
+    for(var i=0; i<data.length; i++) {
+      if(data[i]!=undefined && data[i]<min) min = data[i];
+    } 
+    return min;
+  }
 }

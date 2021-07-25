@@ -25,6 +25,14 @@ export class DifferentCompaniesComponent {
   data1: number[] =  [];
   data2: number[] =  [];
 
+  avgData1: number =0;
+  minData1: number =0;
+  maxData1: number =0;
+
+  avgData2: number =0;
+  minData2: number =0;
+  maxData2: number =0;
+
   chartData = [
     {
       label: 'Price Per Share(in Rs) - Company 1',
@@ -104,6 +112,9 @@ export class DifferentCompaniesComponent {
           this.data1.push(datePriceMap1.get(dateVal));
         }
         this.chartData[0].data= this.data1;
+        this.avgData1 = this.findAvgData(this.data1);
+        this.minData1 = this.findMinData(this.data1);
+        this.maxData1 = this.findMaxData(this.data1);
       },
       error: err => this.errorMessage = err
     });
@@ -123,10 +134,42 @@ export class DifferentCompaniesComponent {
           this.data2.push(datePriceMap2.get(dateVal));
         }
         this.chartData[1].data= this.data2;
-        console.log(this.data2);
+        this.avgData2 = this.findAvgData(this.data2);
+        this.minData2 = this.findMinData(this.data2);
+        this.maxData2 = this.findMaxData(this.data2);
       },
       error: err => this.errorMessage = err
     });
   }
 
+  findAvgData(data: number[])
+  {
+    var sum: number = 0;
+    var count: number = 0;
+    for(var i=0; i<data.length; i++) {
+      if(data[i]!=undefined) {
+        sum+= data[i];
+        count++;
+      }
+    } 
+    return sum/count;
+  }
+
+  findMaxData(data: number[])
+  {
+    var max: number = -1;
+    for(var i=0; i<data.length; i++) {
+      if(data[i]!=undefined && data[i]>max) max = data[i];
+    } 
+    return max;
+  }
+
+  findMinData(data: number[])
+  {
+    var min: number = Number.MAX_SAFE_INTEGER;
+    for(var i=0; i<data.length; i++) {
+      if(data[i]!=undefined && data[i]<min) min = data[i];
+    } 
+    return min;
+  }
 }
