@@ -30,11 +30,17 @@
     </div>
     <br>
     <div>
+      <br>
+        <button type="button" class="btn btn-primary" (click)="exportToExcel('COMPANY_1')">Export To Excel - Company 1</button>
+      <br>
       <div class="form-group">
         Average Data For Company 1: {{avgData1}}<br>
         Minimum Data For Company 1: {{minData1}}<br>
         Maximum Data For Company 1: {{maxData1}}<br>
       </div>
+      <br>
+      <br>
+        <button type="button" class="btn btn-primary" (click)="exportToExcel('COMPANY_2')">Export To Excel - Company 2</button>
       <br>
       <div class="form-group">
         Average Data For Company 2: {{avgData2}}<br>

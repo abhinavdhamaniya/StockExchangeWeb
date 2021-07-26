@@ -3,6 +3,9 @@ import { NgForm } from '@angular/forms';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { SingleCompanyService } from './single-company.service';
+import { Workbook } from 'exceljs';
+import * as fs from 'file-saver';
+import { IpoDto } from 'src/app/dto/IpoDto';
 
 @Component({
   selector: 'app-single-company',
@@ -23,6 +26,7 @@ export class SingleCompanyComponent {
   labels: string[] =  [];
   labelsWithFullFormat: string[] =  [];
   data: number[] =  [];
+  ipoList: Array<IpoDto> = [];
   avgData: number =0;
   minData: number =0;
   maxData: number =0;
@@ -83,6 +87,7 @@ export class SingleCompanyComponent {
 
     this.sub = this.singleCompanyService.getIpoByCompanyId(companyId).subscribe({
       next: ipos => {
+        this.ipoList = ipos;
         for(var i=0; i<ipos.length; i++)
         {
           var dateStringVal = JSON.stringify(ipos[i].openDateTime).substr(1,7);
@@ -132,5 +137,35 @@ export class SingleCompanyComponent {
       if(data[i]!=undefined && data[i]<min) min = data[i];
     } 
     return min;
+  }
+
+  exportToExcel() {
+    let workbook = new Workbook();
+    let worksheet = workbook.addWorksheet('Sheet1');
+    worksheet.columns = [
+      { header: 'Company Code', key: 'companyCode', width: 17 },
+      { header: 'Stock Exchange', key: 'stockExchange', width: 17 },
+      { header: 'Price Per Share(in Rs)', key: 'pricePerShare', width: 20 },
+      { header: 'Total Shares', key: 'totalShares', width: 15 },
+      { header: 'Date', key: 'date', width: 20},
+      { header: 'Time', key: 'time', width: 10},
+      { header: 'Remarks', key: 'remarks', width: 17},
+    ];
+    var filteredList = this.filterIpoListByMonths(this.ipoList);
+    filteredList.forEach(ipo => {
+      worksheet.addRow({companyCode: ipo.company.id, stockExchange: ipo.stockExchangeName, pricePerShare: ipo.pricePerShare, totalShares:ipo.totalShares, date: ipo.openDateTime, time: "", remarks: ipo.remarks},"n");
+    });
+    workbook.xlsx.writeBuffer().then((data) => {
+      let blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      fs.saveAs(blob, 'IpoData.xlsx');
+    })
+  }
+
+  filterIpoListByMonths(ipoList: Array<IpoDto>): Array<IpoDto> {
+    var filteredList: Array<IpoDto> = [];
+    for(var i=0; i<ipoList.length; i++) {
+      if(this.labelsWithFullFormat.includes(JSON.stringify(ipoList[i].openDateTime).substr(1,7))) filteredList.push(ipoList[i]);
+    }
+    return filteredList;
   }
 }
