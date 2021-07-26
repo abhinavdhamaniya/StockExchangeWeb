@@ -12,53 +12,73 @@ import { IpoDto } from "src/app/dto/IpoDto";
 export class ImportDataComponent {
 
   sub!: Subscription;
-  errorMessage: String= "";
+  errorMessage: String = "";
+  errorOccured: Boolean = false;
+  isSuccess: Boolean = false;
+  sucessMessage: String = "";
 
   constructor(private importDataService: ImportDataService) { }
 
   onFileChange(ev: any) {
-    let workBook: any = null;
-    let jsonData = null;
-    const reader = new FileReader();
-    const file = ev.target.files[0];
-    reader.onload = (event) => {
-      const data = reader.result;
-      workBook = XLSX.read(data, { type: 'binary' });
-      jsonData = workBook.SheetNames.reduce((initial: any, name: any) => {
-        const sheet = workBook.Sheets[name];
-        initial[name] = XLSX.utils.sheet_to_json(sheet);
-        return initial;
-      }, {});
-      this.saveIpoList(this.buildObject(jsonData));
+    try {
+      let workBook: any = null;
+      let jsonData = null;
+      const reader = new FileReader();
+      const file = ev.target.files[0];
+      reader.onload = (event) => {
+        const data = reader.result;
+        workBook = XLSX.read(data, { type: 'binary' });
+        jsonData = workBook.SheetNames.reduce((initial: any, name: any) => {
+          const sheet = workBook.Sheets[name];
+          initial[name] = XLSX.utils.sheet_to_json(sheet);
+          return initial;
+        }, {});
+        this.saveIpoList(this.buildObject(jsonData));
+      }
+      reader.readAsBinaryString(file);
     }
-    reader.readAsBinaryString(file);
+    catch(Error) {
+      this.errorOccured = true;
+    }
   }
 
   saveIpoList(ipoList: Array<IpoDto>) {
     this.sub = this.importDataService.saveIpoList(ipoList).subscribe({
       next: response => {
+        this.isSuccess = true;
+        this.sucessMessage = response;
         console.log(response);
       },
-      error: err => this.errorMessage = err
+      error: err => {
+        this.errorOccured = true;
+        this.errorMessage = err
+      }
     });
   }
 
   buildObject(jsonData: any): Array<IpoDto>
   {
-    var ipoList: Array<IpoDto> = [];
-    var dataArray = jsonData.Sheet1;
-    for(var i=0; i<dataArray.length; i++)
-    {
-      var ipo = new IpoDto();
-      ipo.company.id = dataArray[i]["Company Code"];
-      ipo.stockExchangeName = dataArray[i]["Stock Exchange"];
-      ipo.pricePerShare = dataArray[i]["Price Per Share(in Rs)"];
-      ipo.totalShares = dataArray[i]["Total Shares"];
-      ipo.openDateTime = this.excelDateToJSDate(dataArray[i]["Date"]);
-      ipo.remarks = dataArray[i]["Remarks"];
-      ipoList.push(ipo);
+    try {
+        var ipoList: Array<IpoDto> = [];
+        var dataArray = jsonData.Sheet1;
+        for(var i=0; i<dataArray.length; i++)
+        {
+          var ipo = new IpoDto();
+          ipo.company.id = dataArray[i]["Company Code"];
+          ipo.stockExchangeName = dataArray[i]["Stock Exchange"];
+          ipo.pricePerShare = dataArray[i]["Price Per Share(in Rs)"];
+          ipo.totalShares = dataArray[i]["Total Shares"];
+          ipo.openDateTime = this.excelDateToJSDate(dataArray[i]["Date"]);
+          ipo.remarks = dataArray[i]["Remarks"];
+          ipoList.push(ipo);
+        }
+        return ipoList;
     }
-    return ipoList;
+    catch(Error)
+    {
+      this.errorOccured = true;
+      return [];
+    }
   }
 
   excelDateToJSDate(xlSerial: any){

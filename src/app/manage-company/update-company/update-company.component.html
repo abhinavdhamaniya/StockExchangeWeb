@@ -2,6 +2,12 @@
 <body>
     <div>
       <h2>Update a Company</h2>
+      <div class="alert alert-danger" role="alert" *ngIf='errorOccured'>
+        {{errorMessage | json}}
+      </div>
+      <div class="alert alert-success" role="alert" *ngIf='isSuccess'>
+        {{sucessMessage | json}}
+      </div>
       <form #checkCompanyIdForm = "ngForm" (ngSubmit) = "checkExists(checkCompanyIdForm)">
         <div class="form-group">
           <label for="companyId">Company ID</label>
@@ -20,7 +26,7 @@
           </div>
           <div class="form-group">
               <label for="turnover">Turnover</label>
-              <input type="text" class="form-control" name="turnover" placeholder="Enter Turnover" ngModel>
+              <input type="number" class="form-control" name="turnover" placeholder="Enter Turnover" ngModel>
           </div>
           <div class="form-group">
               <label for="ceo">CEO</label>
@@ -36,7 +42,7 @@
           </div>
           <div class="form-group">
               <label for="sectorId">Sector ID</label>
-              <input type="text" class="form-control" name="sectorId" placeholder="Enter Sector ID" ngModel>
+              <input type="number" class="form-control" name="sectorId" placeholder="Enter Sector ID" ngModel>
           </div>
           <div class="form-group">
               <label for="brief">Brief</label>

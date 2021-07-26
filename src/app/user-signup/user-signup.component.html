@@ -2,6 +2,12 @@
 <body>
     <div>
       <h2>Signup for a user account!</h2>
+      <div class="alert alert-danger" role="alert" *ngIf='errorOccured'>
+        {{errorMessage}}
+      </div>
+      <div class="alert alert-success" role="alert" *ngIf='isSuccess'>
+        {{sucessMessage | json}}
+      </div>
       <form #createUserForm = "ngForm" (ngSubmit) = "onClickSubmit(createUserForm)">
         <div class="form-group">
           <label for="username">User Name (Unique)</label>
@@ -17,7 +23,7 @@
         </div> 
         <div class="form-group">
             <label for="phoneNumber">Phone Number</label>
-            <input type="text" class="form-control" name="phoneNumber" placeholder="Enter Phone Number" ngModel>
+            <input type="number" class="form-control" name="phoneNumber" placeholder="Enter Phone Number" ngModel>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

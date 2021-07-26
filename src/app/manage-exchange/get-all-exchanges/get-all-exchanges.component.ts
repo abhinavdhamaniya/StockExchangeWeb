@@ -13,6 +13,7 @@ export class GetAllExchangesComponent implements OnInit {
   sub!: Subscription;
   stockExchanges: StockExchangeDto[] = [];
   errorMessage: String= "";
+  errorOccured: Boolean = false;
 
   constructor(private getAllStockExchangesService: GetAllExchangesService) {}
 
@@ -20,8 +21,13 @@ export class GetAllExchangesComponent implements OnInit {
     this.sub = this.getAllStockExchangesService.getAllStockExchanges().subscribe({
       next: stockExchanges => {
         this.stockExchanges = stockExchanges;
+        this.errorOccured = false;
+        this.errorMessage = "";
       },
-      error: err => this.errorMessage = err
+      error: err => {
+        this.errorOccured = true;
+        this.errorMessage = err
+      }
     });
   }
 }

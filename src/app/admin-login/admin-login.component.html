@@ -2,6 +2,9 @@
 <body>
     <div>
       <h2>Login as Admin</h2>
+      <div class="alert alert-danger" role="alert" *ngIf='errorOccured'>
+        {{errorMessage}}
+      </div>
       <form #adminLoginForm = "ngForm" (ngSubmit) = "onClickSubmit(adminLoginForm)">
         <div class="form-group">
           <label for="adminId">Admin ID</label>

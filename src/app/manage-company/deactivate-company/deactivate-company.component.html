@@ -2,6 +2,12 @@
 <body>
     <div>
       <h2>Deactivate a Company</h2>
+      <div class="alert alert-danger" role="alert" *ngIf='errorOccured'>
+        {{errorMessage}}
+      </div>
+      <div class="alert alert-success" role="alert" *ngIf='isSuccess'>
+        {{sucessMessage | json}}
+      </div>
       <form #deactivateCompany = "ngForm" (ngSubmit) = "onClickSubmit(deactivateCompany)">
         <div class="form-group">
           <label for="companyId">Company ID</label>

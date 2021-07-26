@@ -1,20 +1,16 @@
 <html>
 <body>
     <div>
-      <h5>Search for a company by ID</h5>
-      <div class="alert alert-danger" role="alert" *ngIf='errorOccured'>
-        {{errorMessage}}
-      </div>
-      <form #searchCompanyByIdForm = "ngForm" (ngSubmit) = "onClickSubmit(searchCompanyByIdForm)">
+      <h5>Search for a company by Name</h5>
+      <form #searchCompanyByNameForm = "ngForm">
         <div class="form-group">
-          <label for="companyId">Company ID</label>
-          <input type="text" class="form-control" name="companyId" placeholder="Enter Company ID" ngModel>
+          <label for="companyId">Company Name</label>
+          <input type="text" class="form-control" name="companyName" placeholder="Enter Company Name" [(ngModel)]='listFilter' >
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
     </div>
 
-    <div class="row justify-content-center mt-4" *ngIf='companyFound'>
+    <div class="row justify-content-center mt-4">
         <table class="table table-responsive table-striped w-auto">
             <thead>
                 <tr>
@@ -31,7 +27,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr *ngFor="let company of filteredCompanies">
                     <th scope="row">{{company.id}}</th>
                     <td>{{company.companyName}}</td>
                     <td>{{company.turnover}}</td>

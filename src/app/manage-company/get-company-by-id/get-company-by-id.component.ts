@@ -13,22 +13,42 @@ export class GetCompanyByIdComponent {
 
   sub!: Subscription;
   errorMessage: String= "";
+  errorOccured: Boolean = false;
   company: CompanyDto = new CompanyDto;
   companyFound: Boolean = false;
 
   constructor(private getCompanyByIdService: GetCompanyByIdService) {}
 
   onClickSubmit(searchCompanyByIdForm: NgForm) {
+    this.errorOccured = false;
+    this.errorMessage = "";
     var companyId: String = searchCompanyByIdForm.value.companyId;
     this.sub = this.getCompanyByIdService.getCompanyById(companyId).subscribe({
       next: response => {
         this.company = response;
         this.companyFound = true;
+        this.errorOccured = false;
+        this.errorMessage = "";
         console.log(response);
       },
       error: err => {
         this.companyFound = false;
-        this.errorMessage = err
+        if(err.status==404){
+          this.errorOccured = true;
+          this.errorMessage += "Company Not Found"+ " | ";
+        }
+        else if(err.status==500){
+          this.errorOccured = true;
+          this.errorMessage += "Internal Server Error"+ " | ";
+        }
+        else if(err.status!=200){
+          this.errorOccured = true;
+          this.errorMessage += "Some Error occured"+ " | ";
+        }
+        else {
+          this.errorOccured = false;
+          this.errorMessage = "";
+        }
       }
     });
  }

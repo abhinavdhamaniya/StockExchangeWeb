@@ -12,6 +12,9 @@ export class DeactivateCompanyComponent {
 
   sub!: Subscription;
   errorMessage: String= "";
+  errorOccured: Boolean = false;
+  isSuccess: Boolean = false;
+  sucessMessage: String = "";
 
   constructor(private deactivateCompanyService: DeactivateCompanyService) {}
 
@@ -19,9 +22,22 @@ export class DeactivateCompanyComponent {
     var companyId: String = deactivateCompany.value.companyId;
     this.sub = this.deactivateCompanyService.deactivateCompany(companyId).subscribe({
       next: response => {
+        this.errorOccured = false;
+        this.errorMessage = "";
+        this.isSuccess = true;
+        this.sucessMessage = response;
         console.log(response);
       },
-      error: err => this.errorMessage = err
+      error: err => {
+        if(err.status!=200){
+          this.errorOccured = true;
+          this.errorMessage += err.error.message+ " | ";
+        }
+        else {
+          this.errorOccured = false;
+          this.errorMessage = "";
+        }
+      }
     });
  }
 }

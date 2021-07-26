@@ -2,6 +2,9 @@
 <body>
     <div>
       <h2>Login as User</h2>
+      <div class="alert alert-danger" role="alert" *ngIf='errorOccured'>
+        {{errorMessage}}
+      </div>
       <form #userLoginForm = "ngForm" (ngSubmit) = "onClickSubmit(userLoginForm)">
         <div class="form-group">
           <label for="username">Username</label>

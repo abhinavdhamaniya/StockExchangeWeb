@@ -2,34 +2,40 @@
 <body>
     <div>
       <h2>Create a new Company</h2>
+      <div class="alert alert-danger" role="alert" *ngIf='errorOccured'>
+        {{errorMessage}}
+      </div>
+      <div class="alert alert-success" role="alert" *ngIf='isSuccess'>
+        {{sucessMessage | json}}
+      </div>
       <form #createCompany = "ngForm" (ngSubmit) = "onClickSubmit(createCompany)">
         <div class="form-group">
           <label for="companyName">Company Name</label>
-          <input type="text" class="form-control" name="companyName" placeholder="Enter Company Name" ngModel>
+          <input type="text" class="form-control" name="companyName" placeholder="Enter Company Name" required ngModel>
         </div>
         <div class="form-group">
             <label for="turnover">Turnover</label>
-            <input type="text" class="form-control" name="turnover" placeholder="Enter Turnover" ngModel>
+            <input type="number" class="form-control" name="turnover" placeholder="Enter Turnover" required ngModel>
         </div>
         <div class="form-group">
             <label for="ceo">CEO</label>
-            <input type="text" class="form-control" name="ceo" placeholder="Enter CEO" ngModel>
+            <input type="text" class="form-control" name="ceo" placeholder="Enter CEO" required ngModel>
         </div> 
         <div class="form-group">
             <label for="boardOfDirectors">Board Of Directors</label>
-            <input type="text" class="form-control" name="boardOfDirectors" placeholder="Enter Board Of Directors" ngModel>
+            <input type="text" class="form-control" name="boardOfDirectors" placeholder="Enter Board Of Directors" required ngModel>
         </div>
         <div class="form-group">
             <label for="listedInStockExchanges">Listed In StockExchanges</label>
-            <input type="text" class="form-control" name="listedInStockExchanges" placeholder="Listed In StockExchanges?" ngModel>
+            <input type="text" class="form-control" name="listedInStockExchanges" placeholder="Listed In StockExchanges?" required ngModel>
         </div>
         <div class="form-group">
             <label for="sectorId">Sector ID</label>
-            <input type="text" class="form-control" name="sectorId" placeholder="Enter Sector ID" ngModel>
+            <input type="number" class="form-control" name="sectorId" placeholder="Enter Sector ID" required ngModel>
         </div>
         <div class="form-group">
             <label for="brief">Brief</label>
-            <input type="text" class="form-control" name="brief" placeholder="Write a brief about the company" ngModel>
+            <input type="text" class="form-control" name="brief" placeholder="Write a brief about the company" required ngModel>
         </div>
         <div class="form-group">
             <label for="stockExchangeIds">Stock Exchange IDs</label>

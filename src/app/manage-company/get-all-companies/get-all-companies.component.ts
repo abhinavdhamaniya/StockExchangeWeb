@@ -13,6 +13,7 @@ export class GetAllCompaniesComponent implements OnInit {
   sub!: Subscription;
   companies: CompanyDto[] = [];
   errorMessage: String= "";
+  errorOccured: Boolean = false;
 
   constructor(private getAllCompaniesService: GetAllCompaniesService) {}
 
@@ -22,7 +23,10 @@ export class GetAllCompaniesComponent implements OnInit {
         console.log(companies);
         this.companies = companies;
       },
-      error: err => this.errorMessage = err
+      error: err => {
+        this.errorOccured = true;
+        this.errorMessage = err
+      }
     });
   }
 

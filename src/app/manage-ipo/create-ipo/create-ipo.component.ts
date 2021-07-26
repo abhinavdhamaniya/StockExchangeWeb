@@ -13,20 +13,48 @@ export class CreateIpoComponent {
 
   sub!: Subscription;
   errorMessage: String= "";
+  errorOccured: Boolean = false;
+  isSuccess: Boolean = false;
+  sucessMessage: String = "";
 
   constructor(private createIpoService: CreateIpoService) {}
 
   onClickSubmit(createIpoForm: NgForm) {
+    this.errorOccured = false;
+    this.errorMessage = "";
     var ipo = this.buildObject(createIpoForm);
     this.sub = this.createIpoService.createIpo(ipo).subscribe({
       next: response => {
         console.log(response);
+        this.errorOccured = false;
+        this.errorMessage = "";
+        this.isSuccess = true;
+        this.sucessMessage = response;
       },
-      error: err => this.errorMessage = err
+      error: err => {
+        if(err.status==404){
+          this.errorOccured = true;
+          this.errorMessage += "Company Not Found"+ " | ";
+        }
+        else if(err.status==500){
+          this.errorOccured = true;
+          this.errorMessage += "Internal Server Error"+ " | ";
+        }
+        else if(err.status!=200){
+          this.errorOccured = true;
+          this.errorMessage += "Some Error occured"+ " | ";
+        }
+        else {
+          this.errorOccured = false;
+          this.errorMessage = "";
+        }
+      }
     });
  }
 
   private buildObject(createIpoForm: NgForm): IpoDto {
+    this.errorOccured = false;
+    this.errorMessage = "";
     var ipo: IpoDto = new IpoDto();
     var ipoDetails = createIpoForm.value;
     ipo.company.id = ipoDetails.companyId;

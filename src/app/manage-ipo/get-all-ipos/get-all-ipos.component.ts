@@ -13,6 +13,7 @@ export class GetAllIposComponent implements OnInit {
   sub!: Subscription;
   ipos: IpoDto[] = [];
   errorMessage: String= "";
+  errorOccured: Boolean = false;
 
   constructor(private getAllIposService: GetAllIposService) {}
 
@@ -20,8 +21,13 @@ export class GetAllIposComponent implements OnInit {
     this.sub = this.getAllIposService.getAllIpos().subscribe({
       next: ipos => {
         this.ipos = ipos;
+        this.errorOccured = false;
+        this.errorMessage = "";
       },
-      error: err => this.errorMessage = err
+      error: err => { 
+        this.errorOccured = true;
+        this.errorMessage = err;
+      }
     });
   }
 

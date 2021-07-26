@@ -9,16 +9,23 @@ import { Router } from '@angular/router';
 })
 export class AdminLoginComponent {
 
+  errorOccured: Boolean = false;
+  errorMessage: String = "";
+
   constructor(private router: Router) {}
 
   onClickSubmit(adminLoginForm: NgForm) {
     var adminLoginDetails = adminLoginForm.value;
     var adminId = adminLoginDetails.adminId;
     var adminPassword = adminLoginDetails.adminPassword;
-    if(adminId == 'admin123' && adminPassword == '123')
+    if(adminId == 'admin' && adminPassword == '123')
     {
       localStorage.setItem('LOGGED_IN_USER', "ADMIN");
       this.router.navigate(['admin/get-all-companies'])
+    }
+    else {
+      this.errorOccured = true;
+      this.errorMessage = "Admin Login Failed. Please use username = admin and password =123"
     }
   }
 }
