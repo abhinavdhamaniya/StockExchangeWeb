@@ -11,6 +11,7 @@
 
   <!--Welcome Navbar-->
   <ul class="navbar-nav" *ngIf='loggedInUser!="ADMIN" && loggedInUser!="NORMAL_USER"'>
+    <li><a class='nav-link' routerLinkActive='active' routerLink='welcome'>Welcome</a></li>
       <li><a class='nav-link' routerLinkActive='active' routerLink='/admin-login'>Admin Login</a></li>
       <li><a class='nav-link' routerLinkActive='active' routerLink='/user-login'>User Login</a></li>
       <li><a class='nav-link' routerLinkActive='active' routerLink='/user-signup'>User Signup</a></li>
@@ -54,9 +55,6 @@
       <ul class="dropdown-menu">
         <li><a class="dropdown-item" routerLinkActive='active' routerLink='single-company'> Single Company - Over Different Periods </a></li>
         <li><a class="dropdown-item" routerLinkActive='active' routerLink='different-companies'> Between Different Companies  </a></li>
-        <li><a class="dropdown-item" routerLinkActive='active' routerLink=''> Single Sector - Over Different Periods </a></li>
-        <li><a class="dropdown-item" routerLinkActive='active' routerLink=''> Between Different Sectors  </a></li>
-        <li><a class="dropdown-item" routerLinkActive='active' routerLink=''> Between Sector and Company  </a></li>
       </ul>
     </li>
     <li><a class='nav-link' routerLinkActive='active' routerLink='/admin/get-all-ipos'>View IPOs Planned</a></li>

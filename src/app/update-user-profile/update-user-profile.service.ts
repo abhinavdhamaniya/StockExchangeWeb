@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { UserDto } from "../dto/UserDto";
@@ -13,7 +13,10 @@ export class UpdateUserProfileService {
     constructor(private http: HttpClient) { }
 
     updateUser(userId: number, user: UserDto): Observable<any>{
-        return this.http.put<UserDto>(this.url+userId, user);
+        var httpOptions = {
+            headers: new HttpHeaders({ 'Authorization': localStorage.getItem('TOKEN')! })
+        };
+        return this.http.put<UserDto>(this.url+userId, user, httpOptions);
     }
     
 }

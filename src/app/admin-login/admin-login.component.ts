@@ -1,6 +1,10 @@
 import { Component, OnInit, Output, EventEmitter, Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { UserDto } from '../dto/UserDto';
+import { UserLoginRequest } from '../dto/UserLoginRequest';
+import { UserLoginService } from '../user-login/user-login.service';
 
 @Component({
   selector: 'app-admin-login',
@@ -9,23 +13,54 @@ import { Router } from '@angular/router';
 })
 export class AdminLoginComponent {
 
+  sub!: Subscription;
+  errorMessage: String= "";
   errorOccured: Boolean = false;
-  errorMessage: String = "";
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private userLoginService: UserLoginService) {}
 
   onClickSubmit(adminLoginForm: NgForm) {
+    this.errorOccured = false;
+    this.errorMessage = "";
     var adminLoginDetails = adminLoginForm.value;
-    var adminId = adminLoginDetails.adminId;
-    var adminPassword = adminLoginDetails.adminPassword;
-    if(adminId == 'admin' && adminPassword == '123')
-    {
-      localStorage.setItem('LOGGED_IN_USER', "ADMIN");
-      this.router.navigate(['admin/get-all-companies'])
-    }
-    else {
-      this.errorOccured = true;
-      this.errorMessage = "Admin Login Failed. Please use username = admin and password =123"
-    }
+    var userLoginRequest: UserLoginRequest = new UserLoginRequest();
+    userLoginRequest.username = adminLoginDetails.adminId;
+    userLoginRequest.password = adminLoginDetails.adminPassword;
+    console.log(userLoginRequest);
+    this.sub = this.userLoginService.validateLoginAndGetConfirmedUser(userLoginRequest).subscribe({
+      next: response => {
+        if(response!=false)
+        {
+          console.log(response);
+          this.errorOccured = false;
+          this.errorMessage = "";
+          var user: UserDto = response.userDto;
+          var token: string = response.token;
+          console.log(user);
+          localStorage.setItem('LOGGED_IN_USER', "ADMIN");
+          localStorage.setItem('LOGGED_IN_USER_ID', JSON.stringify(user.id));
+          localStorage.setItem('TOKEN', 'Bearer '+token);
+          this.router.navigate(['/admin/import-data'])
+        }
+      },
+      error: err => {
+        if(err.status==404){
+          this.errorOccured = true;
+          this.errorMessage += "Invalid Credentials. Please use Admin Id = 'app_admin' and Admin Password = 'admin_123'"+ " | ";
+        }
+        else if(err.status==500){
+          this.errorOccured = true;
+          this.errorMessage += "Internal Server Error"+ " | ";
+        }
+        else if(err.status!=200){
+          this.errorOccured = true;
+          this.errorMessage += "Some Error occured"+ " | ";
+        }
+        else {
+          this.errorOccured = false;
+          this.errorMessage = "";
+        }
+      }
+    });
   }
 }

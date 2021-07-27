@@ -6,15 +6,20 @@ import { SingleCompanyService } from './single-company.service';
 import { Workbook } from 'exceljs';
 import * as fs from 'file-saver';
 import { IpoDto } from 'src/app/dto/IpoDto';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-single-company',
   templateUrl: './single-company.component.html',
   styleUrls: ['./single-company.component.css']
 })
-export class SingleCompanyComponent {
+export class SingleCompanyComponent implements OnInit {
 
-  constructor(private singleCompanyService: SingleCompanyService) { }
+  constructor(private singleCompanyService: SingleCompanyService, private router: Router) { }
+
+  ngOnInit(): void {
+    if(localStorage.getItem('TOKEN')==null) this.router.navigate(['unauthanticated']);
+  }
 
   sub!: Subscription;
   errorMessage: String= "";

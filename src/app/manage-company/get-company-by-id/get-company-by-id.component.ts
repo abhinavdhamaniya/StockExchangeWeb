@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CompanyDto } from 'src/app/dto/CompanyDto';
 import { GetCompanyByIdService } from './get-company-by-id.service';
@@ -9,7 +10,7 @@ import { GetCompanyByIdService } from './get-company-by-id.service';
   templateUrl: './get-company-by-id.component.html',
   styleUrls: ['./get-company-by-id.component.css']
 })
-export class GetCompanyByIdComponent {
+export class GetCompanyByIdComponent implements OnInit{
 
   sub!: Subscription;
   errorMessage: String= "";
@@ -17,7 +18,11 @@ export class GetCompanyByIdComponent {
   company: CompanyDto = new CompanyDto;
   companyFound: Boolean = false;
 
-  constructor(private getCompanyByIdService: GetCompanyByIdService) {}
+  constructor(private getCompanyByIdService: GetCompanyByIdService, private router: Router) {}
+
+  ngOnInit(): void {
+    if(localStorage.getItem('TOKEN')==null) this.router.navigate(['unauthanticated']);
+  }
 
   onClickSubmit(searchCompanyByIdForm: NgForm) {
     this.errorOccured = false;

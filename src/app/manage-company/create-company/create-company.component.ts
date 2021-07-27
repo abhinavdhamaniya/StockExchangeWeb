@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CompanyDto } from 'src/app/dto/CompanyDto';
 import { SectorDto } from 'src/app/dto/SectorDto';
@@ -19,9 +20,10 @@ export class CreateCompanyComponent {
   isSuccess: Boolean = false;
   sucessMessage: String = "";
 
-  constructor(private createCompanyService: CreateCompanyService, private formValidationService: FormValidationService) {}
+  constructor(private createCompanyService: CreateCompanyService, private formValidationService: FormValidationService, private router: Router) {}
 
   onClickSubmit(createCompany: NgForm) {
+    if(localStorage.getItem('TOKEN')==null) this.router.navigate(['unauthanticated']);
     this.errorMessage = "";
     var company = this.buildObject(createCompany);
     if(company==false) return;

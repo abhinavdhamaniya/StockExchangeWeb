@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { IpoDto } from "src/app/dto/IpoDto";
@@ -13,7 +13,10 @@ export class SingleCompanyService {
     constructor(private http: HttpClient) { }
 
     getIpoByCompanyId(companyId: String): Observable<IpoDto[]>{
-        return this.http.get<IpoDto[]>(this.url+companyId)
+        var httpOptions = {
+            headers: new HttpHeaders({ 'Authorization': localStorage.getItem('TOKEN')! })
+        };
+        return this.http.get<IpoDto[]>(this.url+companyId, httpOptions)
     }
     
 }

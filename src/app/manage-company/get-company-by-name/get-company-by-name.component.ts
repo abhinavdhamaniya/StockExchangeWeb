@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CompanyDto } from 'src/app/dto/CompanyDto';
 import { GetCompanyByNameService } from './get-company-by-name.service';
@@ -17,7 +18,7 @@ export class GetCompanyByNameComponent implements OnInit {
   company: CompanyDto = new CompanyDto;
   companyFound: Boolean = false;
 
-  constructor(private getCompanyByNameService: GetCompanyByNameService) {}
+  constructor(private getCompanyByNameService: GetCompanyByNameService, private router: Router) {}
 
   private _listFilter = '';
   get listFilter(): string {
@@ -29,6 +30,7 @@ export class GetCompanyByNameComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('TOKEN')==null) this.router.navigate(['unauthanticated']);
     this.sub = this.getCompanyByNameService.getAllCompanies().subscribe({
       next: companies => {
         console.log(companies);

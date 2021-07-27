@@ -11,7 +11,7 @@
       <form #checkIpoIdForm = "ngForm" (ngSubmit) = "checkExists(checkIpoIdForm)">
         <div class="form-group">
           <label for="ipoId">IPO ID</label>
-          <input type="text" class="form-control" name="ipoId" placeholder="Enter IPO ID" ngModel>
+          <input type="number" class="form-control" name="ipoId" placeholder="Enter IPO ID" ngModel>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

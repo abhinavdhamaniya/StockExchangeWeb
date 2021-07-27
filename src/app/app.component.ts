@@ -22,6 +22,7 @@ export class AppComponent implements OnInit{
 
   logout(){
     localStorage.removeItem('LOGGED_IN_USER');
+    localStorage.removeItem('TOKEN');
     this.router.navigate(['welcome'])
   }
 }

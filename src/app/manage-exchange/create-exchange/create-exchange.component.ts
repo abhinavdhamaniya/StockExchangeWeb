@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { StockExchangeDto } from 'src/app/dto/StockExchangeDto';
 import { FormValidationService } from 'src/app/shared/form-validation.service';
@@ -10,7 +11,7 @@ import { CreateExchangeService } from './create-exchange.service';
   templateUrl: './create-exchange.component.html',
   styleUrls: ['./create-exchange.component.css']
 })
-export class CreateExchangeComponent {
+export class CreateExchangeComponent implements OnInit{
 
   sub!: Subscription;
   errorMessage: String= "";
@@ -18,7 +19,11 @@ export class CreateExchangeComponent {
   isSuccess: Boolean = false;
   sucessMessage: String = "";
 
-  constructor(private createExchangeService: CreateExchangeService, private formValidationService: FormValidationService) {}
+  constructor(private createExchangeService: CreateExchangeService, private formValidationService: FormValidationService, private router: Router) {}
+
+  ngOnInit(): void {
+    if(localStorage.getItem('TOKEN')==null) this.router.navigate(['unauthanticated']);
+  }
 
   onClickSubmit(createStockExchangeForm: NgForm) {
     this.errorOccured = false;
@@ -34,6 +39,8 @@ export class CreateExchangeComponent {
         console.log(response);
       },
       error: err => {
+        this.isSuccess = false;
+        this.sucessMessage = "";
         if(err.status==404){
           this.errorOccured = true;
           this.errorMessage += "Company Not Found"+ " | ";

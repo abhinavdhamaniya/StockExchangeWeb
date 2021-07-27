@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { StockExchangeDto } from "src/app/dto/StockExchangeDto";
@@ -13,7 +13,10 @@ export class GetAllExchangesService {
     constructor(private http: HttpClient) { }
 
     getAllStockExchanges(): Observable<StockExchangeDto[]>{
-        return this.http.get<StockExchangeDto[]>(this.url)
+        var httpOptions = {
+            headers: new HttpHeaders({ 'Authorization': localStorage.getItem('TOKEN')! })
+        };
+        return this.http.get<StockExchangeDto[]>(this.url, httpOptions)
     }
     
 }

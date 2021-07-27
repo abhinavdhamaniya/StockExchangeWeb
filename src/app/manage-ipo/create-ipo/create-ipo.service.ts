@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { IpoDto } from "src/app/dto/IpoDto";
@@ -14,7 +14,10 @@ export class CreateIpoService {
     constructor(private http: HttpClient) { }
 
     createIpo(ipo: IpoDto): Observable<any>{
-        return this.http.post<IpoDto>(this.url, ipo);
+        var httpOptions = {
+            headers: new HttpHeaders({ 'Authorization': localStorage.getItem('TOKEN')! })
+        };
+        return this.http.post<IpoDto>(this.url, ipo, httpOptions);
     }
     
 }

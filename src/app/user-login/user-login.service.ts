@@ -13,7 +13,7 @@ export class UserLoginService {
     constructor(private http: HttpClient) { }
 
     validateLoginAndGetConfirmedUser(userLoginRequest: UserLoginRequest): Observable<any>{
-        return this.http.post<UserLoginRequest>(this.url, userLoginRequest);
+        return this.http.post<any>(this.url, userLoginRequest);
     }
     
 }

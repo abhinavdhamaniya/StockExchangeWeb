@@ -26,6 +26,7 @@ import { DifferentCompaniesComponent } from './comparison-charts/different-compa
 import { ChartsModule } from 'ng2-charts';
 import { GetCompanyByIdComponent } from './manage-company/get-company-by-id/get-company-by-id.component';
 import { GetCompanyByNameComponent } from './manage-company/get-company-by-name/get-company-by-name.component';
+import { UnauthanticatedComponent } from './shared/unauthanticated/unauthanticated.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { GetCompanyByNameComponent } from './manage-company/get-company-by-name/
     SingleCompanyComponent,
     DifferentCompaniesComponent,
     GetCompanyByIdComponent,
-    GetCompanyByNameComponent
+    GetCompanyByNameComponent,
+    UnauthanticatedComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +78,9 @@ import { GetCompanyByNameComponent } from './manage-company/get-company-by-name/
       { path: 'different-companies', component: DifferentCompaniesComponent },
       { path: 'get-company-by-id', component: GetCompanyByIdComponent },
       { path: 'get-company-by-name', component: GetCompanyByNameComponent },
+      { path: 'unauthanticated', component: UnauthanticatedComponent },
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+      { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
     ])
   ],
   providers: [],

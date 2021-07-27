@@ -6,15 +6,20 @@ import { Subscription } from 'rxjs';
 import { IpoDto } from 'src/app/dto/IpoDto';
 import { DifferentCompaniesService } from './different-companies.service';
 import * as fs from 'file-saver';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-different-companies',
   templateUrl: './different-companies.component.html',
   styleUrls: ['./different-companies.component.css']
 })
-export class DifferentCompaniesComponent {
+export class DifferentCompaniesComponent implements OnInit{
 
-  constructor(private singleCompanyService: DifferentCompaniesService) { }
+  constructor(private singleCompanyService: DifferentCompaniesService, private router: Router) { }
+
+  ngOnInit(): void {
+    if(localStorage.getItem('TOKEN')==null) this.router.navigate(['unauthanticated']);
+  }
 
   sub!: Subscription;
   errorMessage: String= "";

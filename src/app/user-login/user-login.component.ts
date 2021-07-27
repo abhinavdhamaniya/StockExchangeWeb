@@ -20,6 +20,8 @@ export class UserLoginComponent {
   constructor(private router: Router, private userLoginService: UserLoginService) {}
 
   onClickSubmit(userLoginForm: NgForm) {
+    this.errorOccured = false;
+    this.errorMessage = "";
     var userLoginDetails = userLoginForm.value;
     var userLoginRequest: UserLoginRequest = new UserLoginRequest();
     userLoginRequest.username = userLoginDetails.username;
@@ -28,19 +30,22 @@ export class UserLoginComponent {
       next: response => {
         if(response!=false)
         {
+          console.log(response);
           this.errorOccured = false;
           this.errorMessage = "";
-          var user: UserDto = response;
+          var user: UserDto = response.userDto;
+          var token: string = response.token;
           console.log(user);
           localStorage.setItem('LOGGED_IN_USER', "NORMAL_USER");
           localStorage.setItem('LOGGED_IN_USER_ID', JSON.stringify(user.id));
+          localStorage.setItem('TOKEN', 'Bearer '+token);
           this.router.navigate(['user/update-user-profile'])
         }
       },
       error: err => {
         if(err.status==404){
           this.errorOccured = true;
-          this.errorMessage += "Invalid Credentials or User Account Not Confirmed."+ " | ";
+          this.errorMessage += "Invalid Credentials or User Account Not Confirmed. Create a new user or use default credentials username = 'app_user' and password = 'user_123'"+ " | ";
         }
         else if(err.status==500){
           this.errorOccured = true;

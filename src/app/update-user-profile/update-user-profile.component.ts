@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserDto } from '../dto/UserDto';
 import { FormValidationService } from '../shared/form-validation.service';
@@ -10,7 +11,7 @@ import { UpdateUserProfileService } from './update-user-profile.service';
   templateUrl: './update-user-profile.component.html',
   styleUrls: ['./update-user-profile.component.css']
 })
-export class UpdateUserProfileComponent {
+export class UpdateUserProfileComponent implements OnInit{
 
   sub!: Subscription;
   errorMessage: String= "";
@@ -18,7 +19,11 @@ export class UpdateUserProfileComponent {
   isSuccess: Boolean = false;
   sucessMessage: String = "";
 
-  constructor(private createCompanyService: UpdateUserProfileService, private formValidationService: FormValidationService) {}
+  constructor(private createCompanyService: UpdateUserProfileService, private formValidationService: FormValidationService, private router: Router) {}
+
+  ngOnInit(): void {
+    if(localStorage.getItem('TOKEN')==null) this.router.navigate(['unauthanticated']);
+  }
 
   onClickSubmit(updateUserForm: NgForm) {
     this.errorOccured = false;

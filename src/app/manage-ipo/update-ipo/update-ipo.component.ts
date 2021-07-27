@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IpoDto } from 'src/app/dto/IpoDto';
 import { UpdateIpoService } from './update-ipo.service';
@@ -9,7 +10,7 @@ import { UpdateIpoService } from './update-ipo.service';
   templateUrl: './update-ipo.component.html',
   styleUrls: ['./update-ipo.component.css']
 })
-export class UpdateIpoComponent {
+export class UpdateIpoComponent implements OnInit {
 
   sub!: Subscription;
   errorMessage: String= "";
@@ -19,7 +20,11 @@ export class UpdateIpoComponent {
   _ipoId: String = "";
   public ipoExists: Boolean = false;
 
-  constructor(private updateIpoService: UpdateIpoService) {}
+  constructor(private updateIpoService: UpdateIpoService, private router: Router) {}
+
+  ngOnInit(): void {
+    if(localStorage.getItem('TOKEN')==null) this.router.navigate(['unauthanticated']);
+  }
 
   checkExists(checkIpoIdForm: NgForm) {
     this.errorOccured = false;

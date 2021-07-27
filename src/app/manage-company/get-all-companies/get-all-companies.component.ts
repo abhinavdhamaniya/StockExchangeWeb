@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CompanyDto } from 'src/app/dto/CompanyDto';
 import { GetAllCompaniesService } from './get-all-companies.service';
@@ -15,9 +16,10 @@ export class GetAllCompaniesComponent implements OnInit {
   errorMessage: String= "";
   errorOccured: Boolean = false;
 
-  constructor(private getAllCompaniesService: GetAllCompaniesService) {}
+  constructor(private getAllCompaniesService: GetAllCompaniesService, private router: Router) {}
 
   ngOnInit(): void {
+    if(localStorage.getItem('TOKEN')==null) this.router.navigate(['unauthanticated']);
     this.sub = this.getAllCompaniesService.getAllCompanies().subscribe({
       next: companies => {
         console.log(companies);
