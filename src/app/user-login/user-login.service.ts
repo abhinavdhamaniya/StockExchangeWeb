@@ -8,7 +8,7 @@ import { UserLoginRequest } from "../dto/UserLoginRequest";
 })
 export class UserLoginService {
 
-    private url = 'http://localhost:8090/users/validateLoginAndGetConfirmedUser';
+    private url = 'https://stock-exchange-app-abhinav.herokuapp.com/users/validateLoginAndGetConfirmedUser';
 
     constructor(private http: HttpClient) { }
 

@@ -9,7 +9,7 @@ import { IpoDto } from "src/app/dto/IpoDto";
 })
 export class DifferentCompaniesService {
 
-    private url = 'http://localhost:8090/admin/ipos/';
+    private url = 'https://stock-exchange-app-abhinav.herokuapp.com/admin/ipos/';
 
     constructor(private http: HttpClient) { }
 

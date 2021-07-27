@@ -8,7 +8,7 @@ import { UserDto } from "../dto/UserDto";
 })
 export class UpdateUserProfileService {
 
-    private url = 'http://localhost:8090/users/updateUser/';
+    private url = 'https://stock-exchange-app-abhinav.herokuapp.com/users/updateUser/';
 
     constructor(private http: HttpClient) { }
 

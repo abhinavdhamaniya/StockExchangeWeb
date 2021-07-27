@@ -9,7 +9,7 @@ import { UserDto } from "../dto/UserDto";
 })
 export class UserSignUpService {
 
-    private url = 'http://localhost:8090/users/signup';
+    private url = 'https://stock-exchange-app-abhinav.herokuapp.com/users/signup';
 
     constructor(private http: HttpClient) { }
 

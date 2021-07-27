@@ -8,7 +8,7 @@ import { StockExchangeDto } from "src/app/dto/StockExchangeDto";
 })
 export class CreateExchangeService {
 
-    private url = 'http://localhost:8090/admin/stock-exchanges';
+    private url = 'https://stock-exchange-app-abhinav.herokuapp.com/admin/stock-exchanges';
 
     constructor(private http: HttpClient) { }
 

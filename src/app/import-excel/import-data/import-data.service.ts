@@ -8,7 +8,7 @@ import { IpoDto } from "src/app/dto/IpoDto";
 })
 export class ImportDataService {
 
-    private url = 'http://localhost:8090/admin/ipos/saveIpoList';
+    private url = 'https://stock-exchange-app-abhinav.herokuapp.com/admin/ipos/saveIpoList';
 
     constructor(private http: HttpClient) { }
 

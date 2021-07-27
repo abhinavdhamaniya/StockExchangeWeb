@@ -9,9 +9,9 @@ import { CompanyDto } from "src/app/dto/CompanyDto";
 })
 export class UpdateCompanyService implements OnInit{
 
-    private checkExistsUrl = 'http://localhost:8090/admin/companies/checkExists/';
-    private getCompanyDetailsUrl = 'http://localhost:8090/admin/companies/';
-    private updateCompanyUrl = 'http://localhost:8090/admin/companies/';
+    private checkExistsUrl = 'https://stock-exchange-app-abhinav.herokuapp.com/admin/companies/checkExists/';
+    private getCompanyDetailsUrl = 'https://stock-exchange-app-abhinav.herokuapp.com/admin/companies/';
+    private updateCompanyUrl = 'https://stock-exchange-app-abhinav.herokuapp.com/admin/companies/';
     httpOptions = {
         headers: new HttpHeaders({ 'Authorization': localStorage.getItem('TOKEN')! })
     };

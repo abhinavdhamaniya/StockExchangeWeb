@@ -9,7 +9,7 @@ import { CompanyDto } from "src/app/dto/CompanyDto";
 })
 export class CreateCompanyService implements OnInit{
 
-    private url = 'http://localhost:8090/admin/companies';
+    private url = 'https://stock-exchange-app-abhinav.herokuapp.com/admin/companies';
 
     constructor(private http: HttpClient, private router: Router) { }
 

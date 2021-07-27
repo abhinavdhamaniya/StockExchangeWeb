@@ -8,8 +8,8 @@ import { IpoDto } from "src/app/dto/IpoDto";
 })
 export class UpdateIpoService {
 
-    private checkExistsUrl = 'http://localhost:8090/admin/ipos/checkExists/';
-    private updateIPoUrl = 'http://localhost:8090/admin/ipos/';
+    private checkExistsUrl = 'https://stock-exchange-app-abhinav.herokuapp.com/admin/ipos/checkExists/';
+    private updateIPoUrl = 'https://stock-exchange-app-abhinav.herokuapp.com/admin/ipos/';
     httpOptions = {
         headers: new HttpHeaders({ 'Authorization': localStorage.getItem('TOKEN')! })
     };
